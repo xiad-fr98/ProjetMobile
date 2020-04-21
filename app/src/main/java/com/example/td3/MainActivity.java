@@ -64,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         DigiAPI digiAPI = retrofit.create(DigiAPI.class);
 
-        Call<RestDigimonResponse> call;
-        call = DigiAPI.getdigimonResponse();
+        Call<RestDigimonResponse> call = digiAPI.getDigimonResponse();
         call.enqueue(new Callback< RestDigimonResponse >() {
             @Override
             public void onResponse(Call< RestDigimonResponse > call, Response< RestDigimonResponse > response) {
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "API Successfull", Toast.LENGTH_SHORT).show();
 
                 }else{
-                    showError();
+                    Toast.makeText(getApplicationContext(), "ici Error", Toast.LENGTH_SHORT).show();
                 }
             }
 
