@@ -3,15 +3,15 @@ package com.example.td3;
 public class Digimon {
 
     private String name;
-    private String url;
+    private String img;
     private String level;
 
     public String getName() {
         return name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getImg() {
+        return img;
     }
 
     public String getLevel() {
