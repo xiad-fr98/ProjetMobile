@@ -83,12 +83,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         Picasso.with(context).load(currentDigimon.getImg()).into(holder.digi_image);
         holder.txtHeader.setText(currentDigimon.getName());
         holder.txtFooter.setText(currentDigimon.getLevel());
-        holder.txtHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                remove(position);
-            }
-        });
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
