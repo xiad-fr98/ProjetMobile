@@ -24,6 +24,6 @@ https://github.com/xiad-fr98/ProjetMobile
 <img src="https://github.com/xiad-fr98/ProjetMobile/blob/master/ecran_liste.jpg" width="360" height="640" />
 
 ### Ecran du pokemon
-* Affiche les détails du Digimon sélectionné dans le pokedex
+* Affiche les détails du Digimon sélectionné dans la liste 
 <img src="https://github.com/xiad-fr98/ProjetMobile/blob/master/ecran_detail.jpg" width="360" height="640" />
 
