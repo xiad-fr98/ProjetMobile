@@ -4,29 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.td3.DigiAPI;
 import com.example.td3.R;
 import com.example.td3.Singletons;
 import com.example.td3.controller.MainController;
 import com.example.td3.presentation.model.Digimon;
-import com.example.td3.presentation.model.RestDigimonResponse;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,11 +47,19 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new ListAdapter(digimonList,getApplicationContext());
+        mAdapter = new ListAdapter( digimonList, new ListAdapter.OnItemClickListener(){
+            @Override
+            public void onItemClick(Digimon item){
+                controller.onItemClick( item );
+            }
+        }, getApplicationContext() );
         recyclerView.setAdapter(mAdapter);
     }
     public void showError(){
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_SHORT).show();
     }
 
+    public void navigateToDetails(Digimon digimon){
+        Toast.makeText(getApplicationContext(), "Screen Change", Toast.LENGTH_SHORT).show();
+    }
 }

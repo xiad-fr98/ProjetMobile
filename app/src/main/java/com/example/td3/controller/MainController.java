@@ -85,7 +85,7 @@ public class MainController{
 
 
     public void onItemClick (Digimon digimon){
-
+        view.navigateToDetails(digimon);
     }
     public void onButtonAClick(){
 

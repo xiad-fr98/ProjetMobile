@@ -18,11 +18,15 @@ import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private List< Digimon > values;
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Digimon item);
+    }
+
     Context context;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
         TextView txtHeader;
@@ -56,9 +60,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ListAdapter(List< Digimon > myDataset, Context applicationContext) {
-        values = myDataset;
+    public ListAdapter(List< Digimon > myDataset, OnItemClickListener listener, Context applicationContext) {
+        this.values = myDataset;
+        this.listener = listener;
         this.context = applicationContext;
+    }
+
+    public void setListener(OnItemClickListener listener){
+        this.listener = listener;
     }
 
     // Create new views (invoked by the layout manager)
@@ -86,6 +95,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         Picasso.with(context).load(currentDigimon.getImg()).into(holder.digi_image);
         holder.txtHeader.setText(currentDigimon.getName());
         holder.txtFooter.setText(currentDigimon.getLevel());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override public  void onClick(View v){
+                listener.onItemClick(currentDigimon);
+            }
+        });
 
     }
 

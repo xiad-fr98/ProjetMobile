@@ -46,4 +46,6 @@ public class Singletons{
         return sharedPreferences;
     }
 
+
+
 }
