@@ -1,4 +1,4 @@
-package com.example.td3;
+package com.example.td3.view;
 
 import android.content.Context;
 
@@ -7,17 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.td3.R;
+import com.example.td3.presentation.model.Digimon;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
-    private List<Digimon> values;
+    private List< Digimon > values;
     Context context;
 
     // Provide a reference to the views for each data item
@@ -34,7 +34,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
          public ViewHolder(View v) {
             super(v);
             layout = v;
-            digi_image = (ImageView) v.findViewById(R.id.ic_launcher);
+            digi_image = (ImageView) v.findViewById( R.id.ic_launcher);
             txtHeader = (TextView) v.findViewById(R.id.firstLine);
             txtFooter = (TextView) v.findViewById(R.id.secondLine);
             itemView.setOnClickListener(this);

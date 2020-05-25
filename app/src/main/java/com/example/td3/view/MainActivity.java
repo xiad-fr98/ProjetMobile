@@ -1,33 +1,23 @@
-package com.example.td3;
+package com.example.td3.view;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.media.Image;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.td3.DigiAPI;
+import com.example.td3.R;
+import com.example.td3.presentation.model.Digimon;
+import com.example.td3.presentation.model.RestDigimonResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -51,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView( R.layout.activity_main);
         sharedPreferences = getSharedPreferences("App_Digimon", Context.MODE_PRIVATE);
          gson = new GsonBuilder()
                 .setLenient()
                 .create();
-         List<Digimon> digimonList = getDatafromCache();
+         List< Digimon > digimonList = getDatafromCache();
          if (digimonList!=null){
              showList(digimonList);
          }else{
@@ -95,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         DigiAPI digiAPI = retrofit.create(DigiAPI.class);
 
-        Call<RestDigimonResponse> call = digiAPI.getDigimonResponse();
+        Call< RestDigimonResponse > call = digiAPI.getDigimonResponse();
         call.enqueue(new Callback< RestDigimonResponse >() {
             @Override
             public void onResponse(Call< RestDigimonResponse > call, Response< RestDigimonResponse > response) {
@@ -129,8 +119,4 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_SHORT).show();
     }
 
-    public void page1 (View view)
-    {
-        startActivity(new Intent( this,Detail_page.class ));
-    }
 }

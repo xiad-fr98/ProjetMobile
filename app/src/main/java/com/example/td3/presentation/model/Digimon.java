@@ -1,4 +1,4 @@
-package com.example.td3;
+package com.example.td3.presentation.model;
 
 public class Digimon {
 
