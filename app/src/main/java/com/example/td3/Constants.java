@@ -4,5 +4,6 @@ public class Constants{
 
     public static final String BASE_URL = "https://raw.githubusercontent.com";
     public static String KEY_DIGIMON_LIST ="jsonDigimonList";
+    public static String DIGIMON_KEY ="digimonKey";
 
 }

@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.td3.Constants;
+import com.example.td3.Detail_screen;
 import com.example.td3.R;
 import com.example.td3.Singletons;
 import com.example.td3.controller.MainController;
@@ -60,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navigateToDetails(Digimon digimon){
-        Toast.makeText(getApplicationContext(), "Screen Change", Toast.LENGTH_SHORT).show();
+        Intent myIntent = new Intent(MainActivity.this, Detail_screen.class);
+        myIntent.putExtra( Constants.DIGIMON_KEY,Singletons.getGson().toJson(digimon));
+        MainActivity.this.startActivity(myIntent);
+
     }
 }
