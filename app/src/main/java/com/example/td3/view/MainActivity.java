@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.td3.DigiAPI;
 import com.example.td3.R;
+import com.example.td3.Singletons;
 import com.example.td3.controller.MainController;
 import com.example.td3.presentation.model.Digimon;
 import com.example.td3.presentation.model.RestDigimonResponse;
@@ -46,10 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
         controller = new MainController(
                 this,
-                new GsonBuilder()
-                .setLenient()
-                .create(),
-                getSharedPreferences( "App_Digimon", Context.MODE_PRIVATE ));
+                Singletons.getGson(),
+                Singletons.getSharedPreferences( getApplicationContext())
+        );
 
         controller.onStart();
     }

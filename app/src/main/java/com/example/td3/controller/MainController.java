@@ -1,15 +1,12 @@
 package com.example.td3.controller;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
-import com.example.td3.DigiAPI;
+import com.example.td3.Singletons;
 import com.example.td3.presentation.model.Digimon;
 import com.example.td3.presentation.model.RestDigimonResponse;
 import com.example.td3.view.MainActivity;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.example.td3.Constants;
 
@@ -19,8 +16,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainController{
 
@@ -45,14 +40,9 @@ public class MainController{
     }
     private void makeAPIcall()
     {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory( GsonConverterFactory.create(gson))
-                .build();
 
-        DigiAPI digiAPI = retrofit.create(DigiAPI.class);
 
-        Call< RestDigimonResponse > call = digiAPI.getDigimonResponse();
+        Call< RestDigimonResponse > call = Singletons.getDigiAPI().getDigimonResponse();
         call.enqueue(new Callback< RestDigimonResponse >() {
             @Override
             public void onResponse(Call< RestDigimonResponse > call, Response< RestDigimonResponse > response) {
